@@ -87,3 +87,32 @@ url'de kaldi — kod alanina girmez ama sistem temasiyla bagi korur.
 `armour/unknown` (4.30) ve `gold/gold_mid` yani keyword/string (4.68).
 Uzun kod inceleme oturumlarinda goz bir tik daha calisir. Karsiliginda
 ekran belirgin sekilde daha ciddi ve tek aksan odagi keskinlesir.
+
+## 3.1.0 — Signal Violet
+
+Ucuncu palet: **Signal Violet**. Signalman ve Guardian silinmedi, uc tema
+da pakette.
+
+**Signal Violet nedir:** masaustunun iki rengi koda tasindi. Anahtar
+kelimeler waybar moru (#C57AD4), fonksiyonlar waybar sarisi (#F5C842).
+Geri kalan her rol kendi tonunda: string fosfor yesili, sayi mercan, tip
+lilaya calan buz beyazi, self/True/dekorator gul, parametre lavanta-gri
+(italik), ozellik soguk camgobegi. Mor bu temada bilerek koda giriyor;
+Signalman/Guardian'daki "mor sadece chrome" kurali burada yok.
+
+Neden: Guardian'da anahtar kelime, string ve duz metin ayni gri bantta
+duruyordu (dE 3.5-4.3), uzun oturumda goz bunlari ayirmak icin calisiyordu.
+
+- ana kod tokenlari arasinda en dusuk ayrim: Guardian 3.5 -> 8.8
+- yapisal tonlar (yorum/noktalama/cozulmemis isim): 4.3 -> 7.1
+- uyari rengi fonksiyon sarisindan ayrildi: turuncu #FB9437 (dE 20.4)
+- yorum ve parametre italik
+- ANSI degismedi: kirmizi/yesil ayrimi korunuyor, sadece duz metin rengi
+  (color7/color15) paletle ayni
+- `:SignalVioletCheck` komutu
+
+**Bilinen takas:** anahtar kelime rengi masaustundeki morun birebir
+kendisi oldugu icin kontrasti Guardian'in gri anahtar kelimesinden dusuk
+(APCA Lc 46, Signalman'in anahtar kelimesiyle ayni seviye). Seyrek token
+oldugu icin okumayi bozmaz; karsiliginda editor ve masaustu tek parca
+gorunur.

@@ -67,6 +67,23 @@ hardwired red/green reflex for a learned amber/rust one is a worse deal than a
 slightly impure palette. Purity is worth something in the editor and nothing in
 a scan report.
 
+## Palettes
+
+The package ships three themes from the same rules (true black, honest ANSI,
+measured separation):
+
+| Theme | Code axis | Chrome |
+|---|---|---|
+| **Signalman** | single amber family | violet |
+| **Guardian** | cool steel greys + one yellow accent | violet + yellow |
+| **Signal Violet** | the desktop's violet `#C57AD4` for keywords and yellow `#F5C842` for functions; every other role in its own muted hue | violet + yellow |
+
+Each theme has the same set of files under `nvim/`, `terminal/` and `themes/`,
+named after the theme (`signal-violet.lua`, `signal-violet.conf`, …). Install
+any of them exactly as described below, swapping the name. The Neovim check
+command follows the theme: `:SignalmanCheck`, `:GuardianCheck`,
+`:SignalVioletCheck`.
+
 ## Install
 
 **VS Code / VSCodium** — install the `.vsix`, then pick Signalman from the
