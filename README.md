@@ -94,6 +94,17 @@ command follows the theme: `:SignalmanCheck`, `:GuardianCheck`,
   `bat cache --build`; the shell file then sets `BAT_THEME=signal-violet`.
 - The shell file also colours `fzf` (`FZF_DEFAULT_OPTS`).
 
+**Making or changing a theme** — Signal Violet is generated from one palette
+file, `tools/palettes/signal-violet.toml`. `tools/` holds the pipeline:
+`measure.py` (contrast/separation report), `preview.py` (side-by-side HTML),
+`build.py` (writes every file above), `install.sh` (installs a theme on this
+machine and switches from the previous one) and `release.sh` (tag, `.vsix`,
+GitHub release). See [`tools/README.md`](tools/README.md) (Turkish).
+
+```sh
+tools/install.sh signal-violet   # from the repo root; installs every target
+```
+
 ## Install
 
 **VS Code / VSCodium** — install the `.vsix`, then pick Signalman from the

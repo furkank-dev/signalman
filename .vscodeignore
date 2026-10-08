@@ -3,3 +3,5 @@
 node_modules/**
 *.vsix
 .gitignore
+tools/**
+*-onizleme.html

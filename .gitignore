@@ -1,2 +1,4 @@
 node_modules/
 *.vsix
+*-onizleme.html
+__pycache__/

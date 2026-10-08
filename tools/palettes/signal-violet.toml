@@ -1,0 +1,142 @@
+# Signal Violet — temanin tek kaynagi.
+#
+# Renk yazimi: "#RRGGBB" ya da "oklch L C H"
+#   L = parlaklik (0 siyah, 1 beyaz)
+#   C = doygunluk (0 gri; 0.05 hafif; 0.12+ canli)
+#   H = ton acisi (0 pembe-kirmizi, 60 turuncu, 95 sari, 150 yesil,
+#                  200 camgobegi, 265 mavi-lila, 300 mor, 355 gul)
+#
+# Degistirdikten sonra:
+#   python3 tools/measure.py tools/palettes/signal-violet.toml   # olc
+#   python3 tools/preview.py tools/palettes/signal-violet.toml   # bak
+#   python3 tools/build.py   tools/palettes/signal-violet.toml   # uret
+
+name  = "Signal Violet"
+slug  = "signal-violet"        # dosya adlari: nvim/signal-violet.lua, ...
+shell_prefix = "sv"            # kabuk degiskenleri: __sv_fg, __sv_violet, ...
+neutral_hue  = 300             # gri tonlarin hafif tinti (300 = mor)
+
+[colors]
+bg         = "#000000"
+bg_elev    = "oklch 0.12 0.010 300"   # yuzen pencereler, paneller
+bg_line    = "oklch 0.16 0.014 300"   # imlec satiri
+bg_sel     = "oklch 0.27 0.055 310"   # secim
+border     = "oklch 0.24 0.014 300"
+
+fg         = "oklch 0.84 0.010 300"   # duz metin — ekranda en sik token, en sakin olmali
+fg_bright  = "oklch 0.92 0.008 300"
+
+keyword    = "#C57AD4"                # waybar moru
+function   = "#F5C842"                # waybar sarisi
+string     = "oklch 0.84 0.14 148"
+number     = "oklch 0.79 0.11 40"
+type       = "oklch 0.86 0.06 268"
+builtin    = "oklch 0.78 0.10 355"    # self, True/None, dekorator
+param      = "oklch 0.78 0.04 290"
+property   = "oklch 0.76 0.05 200"
+unknown    = "oklch 0.66 0.008 300"
+
+comment    = "oklch 0.685 0.03 300"
+operator   = "oklch 0.74 0.012 300"
+punct      = "oklch 0.60 0.014 300"
+linenr     = "oklch 0.52 0.012 300"
+regex      = "oklch 0.74 0.07 150"
+regex_meta = "oklch 0.87 0.09 80"
+
+violet     = "#C57AD4"                # chrome: mod rozeti, arama, basliklar
+warn       = "oklch 0.76 0.16 58"
+clay       = "#FF7061"                # hata (ANSI kirmizi ile ayni)
+sage       = "#58BE6C"                # git added (ANSI yesil ile ayni)
+info       = "#78A1D5"
+
+[text]
+nvim_header = """
+-- signal-violet.lua — Neovim colourscheme (Signalman ailesi, ucuncu palet)
+--
+-- Masaustu ile birebir: anahtar kelimeler waybar moru (#C57AD4), fonksiyonlar
+-- waybar sarisi (#F5C842). Geri kalan her rol kendi tonunda; Guardian'daki
+-- "her sey gri" sorunu yok. Mor bu temada bilerek koda giriyor.
+-- Terminal ANSI durust birakildi: yesil yesil, kirmizi kirmizi. git diff,
+-- pytest, trivy ve semgrep bu ayrima bagli.
+--
+-- Olcumler (CIEDE2000 ayrim, APCA Lc kontrast, siyah zemin):
+--   ana kod tokenlari arasinda en dusuk ayrim   Guardian 3.5 -> 9.8
+--   duz metin kontrasti                          Lc 74.5 (Guardian 74.1)
+--   yapisal tonlar (yorum/noktalama/cozulmemis) Guardian 4.3 -> 7.1
+--   uyari vs fonksiyon                           dE 20.4
+--   yorum kontrasti                              Lc 47 (Guardian ile ayni)
+--
+-- Kurulum:
+--   lua/signal-violet.lua                  (modul)
+--   colors/signal-violet.lua               (tek satir: require('signal-violet').load())
+--   lua/lualine/themes/signal-violet.lua   (lualine)
+"""
+
+# @@rol@@ yerine paletteki hex yazilir. Yorumlari istedigin gibi degistir.
+nvim_palette = """
+local c = {
+  bg        = '#000000',
+  bg_elev   = '@@bg_elev@@',
+  bg_line   = '@@bg_line@@', -- imlec satiri: siyahin bir tik ustu, gorunur ama sessiz
+  bg_sel    = '@@bg_sel@@', -- secim: koyu mor, chrome ailesinden
+  border    = '@@border@@',
+
+  fg        = '@@fg@@', -- duz metin: mora calan kemik beyazi, Guardian parlakliginda (en sik token en sakin olan)
+  fg_bright = '@@fg_bright@@',
+
+  -- kod ekseni: masaustunun iki rengi + kendi tonunda her rol
+  keyword   = '@@keyword@@', -- def, if, return, import — waybar moru
+  func      = '@@function@@', -- fonksiyonlar — waybar sarisi
+  string    = '@@string@@', -- fosfor yesili
+  number    = '@@number@@', -- sayilar, sabitler — mercan
+  type      = '@@type@@', -- tipler, siniflar, istisnalar — mavi-lila (duz metinden ayri)
+  builtin   = '@@builtin@@', -- self, True/None, dekorator — gul
+  param     = '@@param@@', -- parametreler (italik)
+  property  = '@@property@@', -- ozellikler, nesne anahtarlari
+  unknown   = '@@unknown@@', -- LSP'nin cozemedigi isimler
+
+  -- yapisal eksen
+  comment   = '@@comment@@', -- Lc 47 — geride ama gunduz de okunur (italik)
+  operator  = '@@operator@@', -- operator anlam tasir, noktalamadan parlak
+  punct     = '@@punct@@',
+  linenr    = '@@linenr@@', -- gutter arayuzdur, kod degil
+
+  -- regex govdesi ayri ele alinir
+  regex      = '@@regex@@', -- literal karakterler (stringin sonuk kardesi)
+  regex_meta = '@@regex_meta@@', -- quantifier, anchor, karakter sinifi, kacis
+
+  violet    = '@@violet@@', -- chrome: arama, secim kenari, basliklar
+  warn      = '@@warn@@', -- uyari: fonksiyon sarisindan ayri, turuncu (dE 20.4)
+  clay      = '@@clay@@', -- hatalar
+  sage      = '@@sage@@', -- git added
+  info      = '@@info@@',
+}
+"""
+
+lualine_header = """
+-- Mod rengi = masaustunun iki rengi: normal mor, insert sari. Diger modlar
+-- kod ekseninden birer ton alir ki hangi modda oldugun ilk bakista okunsun.
+-- b/c bolumleri notr: durum cubugu kod degil, arayuz.
+"""
+
+kitty_header = """
+#  Masaustuyle birebir: mor (#C57AD4) ve sari (#F5C842) chrome ve
+#  kodda ayni. Kod rolleri kendi tonunda, ayrim olculmus.
+#  ANSI durust birakildi: yesil yesil, kirmizi kirmizi. git diff,
+#  pytest, trivy ve semgrep bu ayrima bagli.
+"""
+
+yazi_header = """
+# Ayni palet: nvim/signal-violet.lua, terminal/signal-violet.conf.
+# Mod rozeti masaustu moru, sekme ve imlec sarisi; dosya turleri
+# LS_COLORS ile ayni rolleri alir (dizin=ozellik, calistirilabilir=
+# fonksiyon, arsiv=sayi, medya=string, anahtar/sertifika=hata).
+"""
+
+yazi_readme_intro = """
+Signalman ailesinin ucuncu paleti. Mod rozeti masaustu moru (#C57AD4),
+sekme ve imlec sarisi (#F5C842). Kod onizlemesi `tmtheme.xml` ile,
+Neovim ve VSCodium temasiyla ayni renklerde.
+"""
+
+tmtheme_comment = "Signalman ailesi — themes/signal-violet-color-theme.json ile ayni kurallardan uretildi"

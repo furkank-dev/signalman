@@ -148,3 +148,23 @@ kurali "en sik token en sakin olan" 3.1'de bozulmustu.
 - mor, sari, yesil, mercan, gul ve diger roller degismedi.
 - kitty color7/color15, kabuk prompt'u, lualine, Yazi ve bat ayni
   degerlerden yeniden uretildi.
+
+## 3.2.1 — Signal Violet: tools/ uretim hatti
+
+Renkler 3.2.0 ile ayni. Temalar artik elle degil, tek bir palet dosyasindan
+uretiliyor; yeni tema yapmak "paleti sec, script'i calistir" haline geldi.
+
+- `tools/palettes/signal-violet.toml`: Signal Violet'in tek kaynagi.
+  Renkler `#RRGGBB` ya da `oklch L C H` olarak yazilir.
+- `tools/build.py`: paletten Neovim, lualine, kitty, kabuk, VSCodium,
+  tmTheme ve Yazi dosyalarini uretir; yeni temayi package.json'a kaydeder.
+  Signal Violet'in repodaki dosyalarini bayt bayt ayni uretir.
+- `tools/measure.py`: kontrast (APCA) ve ayrim (CIEDE2000) raporu, esik
+  kontrolleriyle; iki paleti karsilastirabilir.
+- `tools/preview.py`: paletleri tarayicida Neovim penceresi gibi gosterir.
+- `tools/install.sh`: temayi bu bilgisayara kurar (Neovim, kitty, kabuk,
+  Yazi, bat, VSCodium) ve onceki temadan gecisi yapar; kalan eski ayarlari
+  listeler.
+- `tools/release.sh`: surumu etiketler, `.vsix` paketler, GitHub release
+  acar.
+- Ayrintilar: `tools/README.md`. `tools/` `.vsix` paketine girmez.
