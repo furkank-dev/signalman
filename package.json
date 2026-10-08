@@ -2,7 +2,7 @@
   "name": "signalman",
   "displayName": "Signalman",
   "description": "A black terminal theme family with violet chrome and an honest ANSI palette: Signalman (amber), Guardian (steel + one yellow accent) and Signal Violet (the desktop's own violet and yellow carried into the code). Token classes are separated by measured lightness x chroma. Ships kitty, Neovim and shell palettes.",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "publisher": "psik0t",
   "license": "MIT",
   "engines": {

@@ -188,3 +188,17 @@ renk, tek soguk renk (celik), dusuk doygunluk.
 - install.sh: dosya duzenlerken `sed -i --follow-symlinks`. Duz `sed -i`,
   stow'un symlink'ini (~/.zshrc, VSCodium settings.json) normal dosyaya
   ceviriyordu; degisiklik dotfiles reposuna yansimiyordu.
+
+## 3.3.1 — prompt: ops baglami (k8s / aws / docker)
+
+Dort temanin kabuk dosyasinda prompt artik, sadece aktifken, hangi ortama
+bagli oldugunu gosteriyor:
+
+    [psik0t@basti0n homelab k8s:kind-homelab aws:dev main*]$
+
+- k8s: ~/.kube/config'teki (ya da $KUBECONFIG) current-context
+- aws: $AWS_PROFILE ayarliysa
+- docker: varsayilan olmayan context ($DOCKER_CONTEXT ya da ~/.docker/config.json)
+- Hicbiri yoksa prompt eskisi gibi. kubectl/docker calistirilmaz, ayar
+  dosyalari okunur: satir basina ~4 ms.
+- Amac: yanlis cluster'a / hesaba komut atmamak.

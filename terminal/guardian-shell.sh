@@ -45,6 +45,27 @@ __guardian_git() {
   printf '%s' " ${branch}${dirty}"
 }
 
+# ── ops baglami: sadece aktifken gorunur ───────────────────────────
+# Kubernetes context, AWS profili ve varsayilan olmayan Docker context'i.
+# Amac: yanlis cluster'a / hesaba komut atmamak. kubectl/docker CALISTIRILMAZ,
+# ayar dosyalari okunur: prompt her satirda hizli kalir.
+__guardian_ctx() {
+  local out="" cfg ctx
+  cfg="${KUBECONFIG:-$HOME/.kube/config}"; cfg="${cfg%%:*}"
+  if [ -r "$cfg" ]; then
+    ctx=$(sed -n 's/^current-context:[[:space:]]*//p' "$cfg" 2>/dev/null | head -n1)
+    ctx=${ctx//\"/}; ctx=${ctx//\'/}
+    [ -n "$ctx" ] && out="${out} k8s:${ctx}"
+  fi
+  [ -n "${AWS_PROFILE:-}" ] && out="${out} aws:${AWS_PROFILE}"
+  ctx="${DOCKER_CONTEXT:-}"
+  if [ -z "$ctx" ] && [ -r "$HOME/.docker/config.json" ]; then
+    ctx=$(sed -n 's/.*"currentContext"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$HOME/.docker/config.json" 2>/dev/null | head -n1)
+  fi
+  [ -n "$ctx" ] && [ "$ctx" != "default" ] && out="${out} docker:${ctx}"
+  printf '%s' "$out"
+}
+
 # ═══ ZSH ═══════════════════════════════════════════════════════════
 if [ -n "${ZSH_VERSION:-}" ]; then
 
@@ -55,12 +76,13 @@ if [ -n "${ZSH_VERSION:-}" ]; then
 
   __guardian_prompt() {
     local code=$?
-    local B U H D G R
+    local B U H D G K R
     B=$(__gd_zc "$__gd_violet")      # parantezler
     U=$(__gd_zc "$__gd_gold")        # kullanici
     H=$(__gd_zc "$__gd_punct")       # @makine
     D=$(__gd_zc "$__gd_gold_mid")    # dizin
     G=$(__gd_zc "$__gd_steel_dim")   # git
+    K=$(__gd_zc "$__gd_steel")       # ops baglami (k8s/aws/docker)
     R=$(printf '%%{\033[0m%%}')
 
     local git_part
@@ -68,6 +90,11 @@ if [ -n "${ZSH_VERSION:-}" ]; then
     # Dal adinda % gecerse zsh onu prompt kodu sanar; kacisla.
     git_part=${git_part//\%/%%}
     [ -n "$git_part" ] && git_part="${G}${git_part}${R}"
+
+    local ctx_part
+    ctx_part=$(__guardian_ctx)
+    ctx_part=${ctx_part//\%/%%}
+    [ -n "$ctx_part" ] && ctx_part="${K}${ctx_part}${R}"
 
     local tail_part code_part
     if [ "$code" -ne 0 ]; then
@@ -79,7 +106,7 @@ if [ -n "${ZSH_VERSION:-}" ]; then
     fi
 
     # %n kullanici, %m makine, %1~ bulunulan dizin (bash'teki \W)
-    PS1="${B}[${R}${U}%n${R}${H}@%m${R} ${D}%1~${R}${git_part}${code_part}${B}]${R}${tail_part}"
+    PS1="${B}[${R}${U}%n${R}${H}@%m${R} ${D}%1~${R}${ctx_part}${git_part}${code_part}${B}]${R}${tail_part}"
   }
 
   # precmd_functions = zsh'in PROMPT_COMMAND karsiligi. Ayni fonksiyonu
@@ -98,17 +125,22 @@ elif [ -n "${BASH_VERSION:-}" ]; then
 
   __guardian_prompt() {
     local code=$?
-    local B U H D G R
+    local B U H D G K R
     B=$(__gd_fgc "$__gd_violet")
     U=$(__gd_fgc "$__gd_gold")
     H=$(__gd_fgc "$__gd_punct")
     D=$(__gd_fgc "$__gd_gold_mid")
     G=$(__gd_fgc "$__gd_steel_dim")
+    K=$(__gd_fgc "$__gd_steel")
     R="$__gd_rst"
 
     local git_part
     git_part=$(__guardian_git)
     [ -n "$git_part" ] && git_part="${G}${git_part}${R}"
+
+    local ctx_part
+    ctx_part=$(__guardian_ctx)
+    [ -n "$ctx_part" ] && ctx_part="${K}${ctx_part}${R}"
 
     local tail_part code_part
     if [ "$code" -ne 0 ]; then
@@ -119,7 +151,7 @@ elif [ -n "${BASH_VERSION:-}" ]; then
       code_part=""
     fi
 
-    PS1="${B}[${R}${U}\u${R}${H}@\h${R} ${D}\W${R}${git_part}${code_part}${B}]${R}${tail_part}"
+    PS1="${B}[${R}${U}\u${R}${H}@\h${R} ${D}\W${R}${ctx_part}${git_part}${code_part}${B}]${R}${tail_part}"
   }
 
   case $- in
