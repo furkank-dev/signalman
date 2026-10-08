@@ -116,3 +116,20 @@ kendisi oldugu icin kontrasti Guardian'in gri anahtar kelimesinden dusuk
 (APCA Lc 46, Signalman'in anahtar kelimesiyle ayni seviye). Seyrek token
 oldugu icin okumayi bozmaz; karsiliginda editor ve masaustu tek parca
 gorunur.
+
+## 3.1.1 — Signal Violet: Yazi, bat, delta, fzf
+
+Renkler 3.1.0 ile ayni; tema artik editor disindaki araclara da uzaniyor.
+
+- **Yazi flavor** (`yazi/signal-violet.yazi/`): mod rozeti mor, sekme ve
+  imlec sari, dosya turleri LS_COLORS ile ayni rollerde. Kod onizlemesi
+  kendi `tmtheme.xml`'i ile Neovim ve VSCodium'la ayni renklerde.
+- **tmTheme** (`terminal/signal-violet.tmTheme`): VSCodium kurallarindan
+  uretildi; bat ve delta bunu kullanir. Kabuk dosyasi tema kuruluysa
+  `BAT_THEME=signal-violet`, degilse eskisi gibi `ansi`.
+- **fzf**: eslesme mor, secili satir koyu mor zemin + sari isaretci.
+  Kabuk dosyasi iki kez source edilse de renk bir kez eklenir.
+- zsh-autosuggestions onerisi Signalman'dan kalan griden paletin gutter
+  tonuna alindi.
+- VSCodium/tmTheme: `self` ve dekoratorler Sublime/bat kapsam adlariyla da
+  (`variable.language`, `meta.annotation`) gul rengini aliyor.

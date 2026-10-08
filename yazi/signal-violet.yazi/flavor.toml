@@ -1,0 +1,118 @@
+# Signal Violet — Yazi flavor
+#
+# Ayni palet: nvim/signal-violet.lua, terminal/signal-violet.conf.
+# Mod rozeti masaustu moru, sekme ve imlec sarisi; dosya turleri
+# LS_COLORS ile ayni rolleri alir (dizin=ozellik, calistirilabilir=
+# fonksiyon, arsiv=sayi, medya=string, anahtar/sertifika=hata).
+
+[mgr]
+cwd              = { fg = "#C57AD4", bold = true }
+find_keyword     = { fg = "#F5C842", bold = true, underline = true }
+find_position    = { fg = "#EB9DBB", bg = "reset", bold = true }
+symlink_target   = { fg = "#8CBBBE", italic = true }
+marker_copied    = { fg = "#87E496", bg = "#87E496" }
+marker_cut       = { fg = "#FF7061", bg = "#FF7061" }
+marker_marked    = { fg = "#C57AD4", bg = "#C57AD4" }
+marker_selected  = { fg = "#F5C842", bg = "#F5C842" }
+count_copied     = { fg = "#000000", bg = "#87E496" }
+count_cut        = { fg = "#000000", bg = "#FF7061" }
+count_selected   = { fg = "#000000", bg = "#F5C842" }
+border_symbol    = "│"
+border_style     = { fg = "#201E25" }
+
+[indicator]
+parent  = { fg = "#EFEDF3", bg = "#2F1E3A" }
+current = { fg = "#000000", bg = "#C57AD4", bold = true }
+preview = { underline = true }
+
+[tabs]
+active   = { fg = "#000000", bg = "#F5C842", bold = true }
+inactive = { fg = "#817E88", bg = "#060509" }
+
+[mode]
+normal_main = { fg = "#000000", bg = "#C57AD4", bold = true }
+normal_alt  = { fg = "#C57AD4", bg = "#060509" }
+select_main = { fg = "#000000", bg = "#87E496", bold = true }
+select_alt  = { fg = "#87E496", bg = "#060509" }
+unset_main  = { fg = "#000000", bg = "#EB9DBB", bold = true }
+unset_alt   = { fg = "#EB9DBB", bg = "#060509" }
+
+[status]
+perm_type       = { fg = "#8CBBBE" }
+perm_read       = { fg = "#F5C842" }
+perm_write      = { fg = "#FF7061" }
+perm_exec       = { fg = "#87E496" }
+perm_sep        = { fg = "#6A676F" }
+progress_label  = { fg = "#EFEDF3", bold = true }
+progress_normal = { fg = "#C57AD4", bg = "#060509" }
+progress_error  = { fg = "#FF7061", bg = "#060509" }
+
+[which]
+mask            = { bg = "#060509" }
+cand            = { fg = "#F5C842" }
+rest            = { fg = "#817E88" }
+desc            = { fg = "#DFDDE4" }
+separator       = "  "
+separator_style = { fg = "#6A676F" }
+
+[confirm]
+border  = { fg = "#C57AD4" }
+title   = { fg = "#C57AD4", bold = true }
+body    = { fg = "#DFDDE4" }
+list    = { fg = "#ACA9B1" }
+btn_yes = { fg = "#000000", bg = "#F5C842", bold = true }
+btn_no  = { fg = "#DFDDE4", bg = "#060509" }
+
+[spot]
+border   = { fg = "#C57AD4" }
+title    = { fg = "#C57AD4", bold = true }
+tbl_col  = { fg = "#8CBBBE" }
+tbl_cell = { fg = "#DFDDE4" }
+
+[notify]
+title_info  = { fg = "#78A1D5" }
+title_warn  = { fg = "#FB9437" }
+title_error = { fg = "#FF7061" }
+
+[pick]
+border   = { fg = "#C57AD4" }
+active   = { fg = "#C57AD4", bold = true }
+inactive = { fg = "#DFDDE4" }
+
+[input]
+border   = { fg = "#C57AD4" }
+title    = { fg = "#C57AD4" }
+value    = { fg = "#EFEDF3" }
+selected = { bg = "#2F1E3A" }
+
+[cmp]
+border   = { fg = "#C57AD4" }
+active   = { fg = "#000000", bg = "#C57AD4" }
+inactive = { fg = "#DFDDE4" }
+
+[tasks]
+border  = { fg = "#C57AD4" }
+title   = { fg = "#C57AD4" }
+hovered = { fg = "#F5C842", underline = true }
+
+[help]
+border  = { fg = "#C57AD4" }
+chord   = { fg = "#F5C842" }
+action  = { fg = "#87E496" }
+hovered = { bg = "#2F1E3A", bold = true }
+
+[filetype]
+rules = [
+  { mime = "image/*", fg = "#87E496" },
+  { mime = "{audio,video}/*", fg = "#87E496" },
+  { mime = "application/{zip,gzip,x-tar,x-bzip*,x-7z-compressed,x-rar,x-xz,zstd}", fg = "#F7A284" },
+  { url = "*.{pem,key,crt,p12,pfx}", fg = "#FF7061" },
+  { url = "*.{yaml,yml,toml,json,tf,tfvars,hcl,conf,ini,env}", fg = "#C57AD4" },
+  { url = "*Dockerfile", fg = "#C57AD4" },
+  { url = "*.{log,bak}", fg = "#6A676F" },
+  { url = "*", is = "orphan", fg = "#FF7061" },
+  { url = "*", is = "exec", fg = "#F5C842" },
+  { url = "*", is = "link", fg = "#C57AD4" },
+  { url = "*", fg = "#DFDDE4" },
+  { url = "*/", fg = "#8CBBBE" },
+]

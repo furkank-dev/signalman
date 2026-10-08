@@ -575,7 +575,11 @@
         "constant.language.import-export-all.ts",
         "variable.language.this",
         "variable.language.self",
-        "variable.language.super"
+        "variable.language.super",
+        "variable.language",
+        "variable.language.self",
+        "variable.language.special.self",
+        "variable.parameter.function.language.special.self"
       ],
       "settings": {
         "foreground": "#EB9DBB"
@@ -1008,7 +1012,10 @@
         "entity.name.function.decorator",
         "punctuation.decorator",
         "punctuation.definition.decorator",
-        "entity.name.function.decorator"
+        "entity.name.function.decorator",
+        "meta.annotation",
+        "variable.annotation",
+        "punctuation.definition.annotation"
       ],
       "settings": {
         "foreground": "#EB9DBB"

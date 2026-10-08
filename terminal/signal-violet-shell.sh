@@ -199,8 +199,22 @@ export MANROFFOPT='-P -c'
 export GREP_COLORS="mt=38;2;${__sv_violet};1:ln=38;2;${__sv_dim}:fn=38;2;${__sv_steel_dim}:se=38;2;${__sv_punct}"
 
 # ── bat / delta ────────────────────────────────────────────────────
-# bat'in kendi temasi yok; en yakini ANSI'ye saygi duyani.
-export BAT_THEME="ansi"
+# terminal/signal-violet.tmTheme, bat'in tema klasorune kopyalanip
+# `bat cache --build` calistirildiysa onu kullan; yoksa ANSI'ye dus.
+# bat temayi dosya adindan tanir. delta da BAT_THEME'i okur.
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/bat/themes/signal-violet.tmTheme" ]; then
+  export BAT_THEME="signal-violet"
+else
+  export BAT_THEME="ansi"
+fi
+
+# ── fzf ────────────────────────────────────────────────────────────
+# Eslesme mor, secili satir koyu mor zemin + sari isaretci.
+# Kabuk dosyasi tekrar source edilirse ayni renk iki kez eklenmesin.
+case "${FZF_DEFAULT_OPTS:-}" in
+  *"hl:#C57AD4"*) ;;
+  *) export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:-} --color=fg:#DFDDE4,bg:-1,hl:#C57AD4,fg+:#EFEDF3,bg+:#2F1E3A,hl+:#F5C842,info:#817E88,prompt:#C57AD4,pointer:#F5C842,marker:#87E496,spinner:#C57AD4,header:#9C96AA,border:#201E25,gutter:-1" ;;
+esac
 
 # ── jq ─────────────────────────────────────────────────────────────
 # Alan sirasi: null:false:true:sayilar:stringler:diziler:nesneler:anahtarlar
@@ -210,4 +224,4 @@ export JQ_COLORS="0;38;2;${__sv_punct}:0;38;2;${__sv_cream}:0;38;2;${__sv_cream}
 
 # ── zsh-autosuggestions ────────────────────────────────────────────
 # Oneri metni gutter grisi: okunur ama yazdigin komutla karismaz.
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#737068"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6A676F"

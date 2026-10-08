@@ -84,6 +84,16 @@ any of them exactly as described below, swapping the name. The Neovim check
 command follows the theme: `:SignalmanCheck`, `:GuardianCheck`,
 `:SignalVioletCheck`.
 
+**Signal Violet extras** — files the other two palettes do not have yet:
+
+- `yazi/signal-violet.yazi/` — a Yazi flavor (UI + code preview). Copy it to
+  `~/.config/yazi/flavors/` and set `[flavor] dark = "signal-violet"` in
+  `~/.config/yazi/theme.toml`.
+- `terminal/signal-violet.tmTheme` — the same token rules as a tmTheme, for
+  `bat` and `delta`. Copy it to `$(bat --config-dir)/themes/`, run
+  `bat cache --build`; the shell file then sets `BAT_THEME=signal-violet`.
+- The shell file also colours `fzf` (`FZF_DEFAULT_OPTS`).
+
 ## Install
 
 **VS Code / VSCodium** — install the `.vsix`, then pick Signalman from the
