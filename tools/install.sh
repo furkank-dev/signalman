@@ -43,7 +43,7 @@ ok "tema, lualine temasi, colors/ yukleyicisi"
 if [ -n "$OLD" ]; then
   for f in "$NV/lua/plugins/colorscheme.lua" "$NV/lua/config/lazy.lua"; do
     if [ -f "$f" ] && grep -q "\"$OLD\"" "$f"; then
-      sed -i "s/\"$OLD\"/\"$SLUG\"/g" "$f"; ok "$OLD → $SLUG: ${f#"$HOME"/}"
+      sed -i --follow-symlinks "s/\"$OLD\"/\"$SLUG\"/g" "$f"; ok "$OLD → $SLUG: ${f#"$HOME"/}"
     fi
   done
 fi
@@ -57,7 +57,7 @@ if [ -d "$KD" ]; then
   if grep -q "include.*$SLUG\.conf" "$KD/kitty.conf" 2>/dev/null; then
     ok "kitty.conf zaten $SLUG.conf'u include ediyor"
   elif [ -n "$OLD" ] && grep -q "include.*$OLD\.conf" "$KD/kitty.conf" 2>/dev/null; then
-    sed -i "s/include\(.*\)$OLD\.conf/include\1$SLUG.conf/" "$KD/kitty.conf"; ok "kitty.conf → $SLUG.conf"
+    sed -i --follow-symlinks "s/include\(.*\)$OLD\.conf/include\1$SLUG.conf/" "$KD/kitty.conf"; ok "kitty.conf → $SLUG.conf"
   else
     warn "kitty.conf'un en ustune ekle: include $SLUG.conf"
   fi
@@ -70,7 +70,7 @@ cp "terminal/$SLUG-shell.sh" "$HOME/.config/signalman/$SLUG-shell.sh"
 ok "$SLUG-shell.sh"
 for rc in "$HOME/.zshrc" "$HOME/.bashrc"; do
   if [ -n "$OLD" ] && [ -f "$rc" ] && grep -q "$OLD-shell\.sh" "$rc"; then
-    sed -i "s/$OLD-shell\.sh/$SLUG-shell.sh/g" "$rc"; ok "${rc#"$HOME"/}"
+    sed -i --follow-symlinks "s/$OLD-shell\.sh/$SLUG-shell.sh/g" "$rc"; ok "${rc#"$HOME"/}"
   fi
 done
 grep -qs "$SLUG-shell\.sh" "$HOME/.zshrc" || \
@@ -85,7 +85,7 @@ if command -v yazi >/dev/null && [ -d "yazi/$SLUG.yazi" ]; then
   if [ -f "$TT" ] && grep -q "^dark *= *\"$SLUG\"" "$TT"; then
     ok "theme.toml zaten $SLUG"
   elif [ -f "$TT" ] && grep -q '^\[flavor\]' "$TT" && ! grep -qv -e '^\[flavor\]' -e '^dark *=' -e '^light *=' -e '^#' -e '^$' "$TT"; then
-    sed -i "s/^dark *= *\".*\"/dark = \"$SLUG\"/" "$TT"; ok "theme.toml → dark = \"$SLUG\""
+    sed -i --follow-symlinks "s/^dark *= *\".*\"/dark = \"$SLUG\"/" "$TT"; ok "theme.toml → dark = \"$SLUG\""
   else
     # theme.toml'daki her renk flavor'i ezer; o yuzden sadece [flavor] birakilir.
     [ -f "$TT" ] && cp "$TT" "$TT.bak" && ok "eski theme.toml yedeklendi: theme.toml.bak"
@@ -113,7 +113,7 @@ if command -v codium >/dev/null; then
   if [ -n "$VSIX" ]; then codium --install-extension "$VSIX" --force >/dev/null && ok "eklenti: $(basename "$VSIX")"; fi
   SJ="$HOME/.config/VSCodium/User/settings.json"
   if [ -f "$SJ" ] && grep -q '"workbench.colorTheme"' "$SJ"; then
-    sed -i "s/\"workbench.colorTheme\": *\"[^\"]*\"/\"workbench.colorTheme\": \"$NAME\"/" "$SJ"; ok "VSCodium temasi: $NAME"
+    sed -i --follow-symlinks "s/\"workbench.colorTheme\": *\"[^\"]*\"/\"workbench.colorTheme\": \"$NAME\"/" "$SJ"; ok "VSCodium temasi: $NAME"
   else
     warn "VSCodium'da Ctrl+K Ctrl+T → $NAME"
   fi

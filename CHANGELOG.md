@@ -168,3 +168,23 @@ uretiliyor; yeni tema yapmak "paleti sec, script'i calistir" haline geldi.
 - `tools/release.sh`: surumu etiketler, `.vsix` paketler, GitHub release
   acar.
 - Ayrintilar: `tools/README.md`. `tools/` `.vsix` paketine girmez.
+
+## 3.3.0 — Nazarick: siyah, altin, celik
+
+Dorduncu palet. Masaustu artik Nazarick wallpaper'i ve "Mum Isigi" paletinde
+(dotfiles); kod temasi ona uyuyor. Kural: siyah zemin, masaustu altini ana
+renk, tek soguk renk (celik), dusuk doygunluk.
+
+- anahtar kelimeler, prompt, Neovim mod rozeti, kitty sekmesi: altin #E0B878
+- fonksiyonlar soluk krem (ekranin en parlak tokeni), stringler soluk deniz
+  yesili, sayilar bakir, tipler buz celigi, self/True/dekorator celik mavisi
+- olcumler: ana roller arasi en dusuk ayrim dE 9.9, duz metin Lc 74.5,
+  yorum Lc 47, uyari vs kod dE 12.9
+- butun hedefler tools/ hattindan uretildi: Neovim + lualine, kitty, kabuk,
+  VSCodium, tmTheme (bat/delta), Yazi flavor
+- build.py: Guardian kaliplarindaki mor #C57AD4 (kitty secimi, link rengi,
+  VSCodium chrome) artik palet rengine cevriliyor. Signal Violet'te ayni
+  renk oldugu icin fark edilmemisti; Signal Violet dosyalari degismedi.
+- install.sh: dosya duzenlerken `sed -i --follow-symlinks`. Duz `sed -i`,
+  stow'un symlink'ini (~/.zshrc, VSCodium settings.json) normal dosyaya
+  ceviriyordu; degisiklik dotfiles reposuna yansimiyordu.

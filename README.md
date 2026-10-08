@@ -69,7 +69,7 @@ a scan report.
 
 ## Palettes
 
-The package ships three themes from the same rules (true black, honest ANSI,
+The package ships four themes from the same rules (true black, honest ANSI,
 measured separation):
 
 | Theme | Code axis | Chrome |
@@ -77,14 +77,16 @@ measured separation):
 | **Signalman** | single amber family | violet |
 | **Guardian** | cool steel greys + one yellow accent | violet + yellow |
 | **Signal Violet** | the desktop's violet `#C57AD4` for keywords and yellow `#F5C842` for functions; every other role in its own muted hue | violet + yellow |
+| **Nazarick** | black, the desktop's candle gold `#E0B878` for keywords, pale cream functions, and one cold accent (steel) for types and builtins; low saturation throughout | gold |
 
 Each theme has the same set of files under `nvim/`, `terminal/` and `themes/`,
 named after the theme (`signal-violet.lua`, `signal-violet.conf`, …). Install
 any of them exactly as described below, swapping the name. The Neovim check
 command follows the theme: `:SignalmanCheck`, `:GuardianCheck`,
-`:SignalVioletCheck`.
+`:SignalVioletCheck`, `:NazarickCheck`.
 
-**Signal Violet extras** — files the other two palettes do not have yet:
+**Signal Violet and Nazarick extras** — files the two older palettes do not have yet
+(shown for Signal Violet; Nazarick has the same set under its own name):
 
 - `yazi/signal-violet.yazi/` — a Yazi flavor (UI + code preview). Copy it to
   `~/.config/yazi/flavors/` and set `[flavor] dark = "signal-violet"` in

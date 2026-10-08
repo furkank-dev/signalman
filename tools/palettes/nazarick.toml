@@ -1,0 +1,144 @@
+# Nazarick — temanin tek kaynagi.
+#
+# Masaustu: Nazarick wallpaper'i (Albedo, taht odasi) ve "Mum Isigi" masaustu
+# paleti. Kural: siyah zemin, altin ana renk, tek soguk renk (celik).
+# Dusuk doygunluk; pembe/lila/mercan yok.
+#
+# Renk yazimi: "#RRGGBB" ya da "oklch L C H"
+#   L = parlaklik (0 siyah, 1 beyaz)
+#   C = doygunluk (0 gri; 0.05 hafif; 0.12+ canli)
+#   H = ton acisi (0 pembe-kirmizi, 60 turuncu, 95 sari, 150 yesil,
+#                  200 camgobegi, 265 mavi-lila, 300 mor, 355 gul)
+#
+# Degistirdikten sonra:
+#   python3 tools/measure.py tools/palettes/nazarick.toml   # olc
+#   python3 tools/preview.py tools/palettes/nazarick.toml   # bak
+#   python3 tools/build.py   tools/palettes/nazarick.toml   # uret
+
+name  = "Nazarick"
+slug  = "nazarick"             # dosya adlari: nvim/nazarick.lua, ...
+shell_prefix = "nz"            # kabuk degiskenleri: __nz_fg, __nz_violet, ...
+neutral_hue  = 70              # gri tonlarin hafif tinti (70 = sicak, mum isigi)
+
+[colors]
+bg         = "#000000"
+bg_elev    = "oklch 0.12 0.010 70"    # yuzen pencereler, paneller
+bg_line    = "oklch 0.16 0.012 70"    # imlec satiri
+bg_sel     = "oklch 0.30 0.050 75"    # secim: koyu altin
+border     = "oklch 0.26 0.020 75"
+
+fg         = "oklch 0.84 0.014 75"    # duz metin: sicak fildisi, en sik token en sakin
+fg_bright  = "oklch 0.92 0.012 75"
+
+keyword    = "#E0B878"                # masaustu altini (avize)
+function   = "oklch 0.90 0.045 88"    # soluk fildisi-krem: kodun basliklari
+string     = "oklch 0.76 0.06 160"    # soluk deniz yesili
+number     = "oklch 0.76 0.09 50"     # bakir
+type       = "oklch 0.84 0.035 250"   # buz celigi
+builtin    = "oklch 0.70 0.07 230"    # self, True/None, dekorator: celik mavisi
+param      = "oklch 0.78 0.035 35"    # sicak gri-bej (italik)
+property   = "oklch 0.76 0.03 195"    # gri-camgobegi
+unknown    = "oklch 0.66 0.010 70"
+
+comment    = "oklch 0.685 0.030 60"
+operator   = "oklch 0.74 0.014 70"
+punct      = "oklch 0.60 0.016 70"
+linenr     = "oklch 0.52 0.014 70"
+regex      = "oklch 0.68 0.06 185"
+regex_meta = "oklch 0.88 0.06 200"
+
+violet     = "#E0B878"                # chrome (adi tarihsel): mod rozeti, arama, prompt — altin
+warn       = "oklch 0.74 0.16 60"     # uyari: turuncu, bakir sayilardan ayri
+clay       = "#FF7061"                # hata (ANSI kirmizi ile ayni)
+sage       = "#58BE6C"                # git added (ANSI yesil ile ayni)
+info       = "#78A1D5"
+
+[text]
+nvim_header = """
+-- nazarick.lua — Neovim colourscheme (Signalman ailesi, dorduncu palet)
+--
+-- Nazarick wallpaper'i ve "Mum Isigi" masaustu paletiyle birebir: anahtar
+-- kelimeler, prompt ve mod rozeti masaustu altini (#E0B878). Kural: siyah
+-- zemin, altin ana renk, tek soguk renk (celik). Dusuk doygunluk.
+-- Terminal ANSI durust birakildi: yesil yesil, kirmizi kirmizi. git diff,
+-- pytest, trivy ve semgrep bu ayrima bagli.
+--
+-- Olcumler (CIEDE2000 ayrim, APCA Lc kontrast, siyah zemin):
+--   ana kod tokenlari arasinda en dusuk ayrim   dE 9.9
+--   duz metin kontrasti                          Lc 74.5
+--   yapisal tonlar (yorum/noktalama/cozulmemis) dE 6.6
+--   uyari vs kod                                 dE 12.9
+--   yorum kontrasti                              Lc 47
+--
+-- Kurulum:
+--   lua/nazarick.lua                  (modul)
+--   colors/nazarick.lua               (tek satir: require('nazarick').load())
+--   lua/lualine/themes/nazarick.lua   (lualine)
+"""
+
+# @@rol@@ yerine paletteki hex yazilir. Yorumlari istedigin gibi degistir.
+nvim_palette = """
+local c = {
+  bg        = '#000000',
+  bg_elev   = '@@bg_elev@@',
+  bg_line   = '@@bg_line@@', -- imlec satiri: siyahin bir tik ustu, sicak
+  bg_sel    = '@@bg_sel@@', -- secim: koyu altin
+  border    = '@@border@@',
+
+  fg        = '@@fg@@', -- duz metin: sicak fildisi (en sik token en sakin olan)
+  fg_bright = '@@fg_bright@@',
+
+  -- kod ekseni: altin + krem + tek soguk renk (celik)
+  keyword   = '@@keyword@@', -- def, if, return, import — masaustu altini
+  func      = '@@function@@', -- fonksiyonlar — soluk fildisi-krem, ekranin en parlak tokeni
+  string    = '@@string@@', -- soluk deniz yesili
+  number    = '@@number@@', -- sayilar, sabitler — bakir
+  type      = '@@type@@', -- tipler, siniflar, istisnalar — buz celigi
+  builtin   = '@@builtin@@', -- self, True/None, dekorator — celik mavisi
+  param     = '@@param@@', -- parametreler (italik) — sicak gri-bej
+  property  = '@@property@@', -- ozellikler, nesne anahtarlari — gri-camgobegi
+  unknown   = '@@unknown@@', -- LSP'nin cozemedigi isimler
+
+  -- yapisal eksen
+  comment   = '@@comment@@', -- Lc 47 — geride ama gunduz de okunur (italik)
+  operator  = '@@operator@@', -- operator anlam tasir, noktalamadan parlak
+  punct     = '@@punct@@',
+  linenr    = '@@linenr@@', -- gutter arayuzdur, kod degil
+
+  -- regex govdesi ayri ele alinir
+  regex      = '@@regex@@', -- literal karakterler (stringin soguk kardesi)
+  regex_meta = '@@regex_meta@@', -- quantifier, anchor, karakter sinifi, kacis
+
+  violet    = '@@violet@@', -- chrome (adi tarihsel): arama, secim kenari, basliklar — altin
+  warn      = '@@warn@@', -- uyari: turuncu, bakirdan ayri (dE 12.9)
+  clay      = '@@clay@@', -- hatalar
+  sage      = '@@sage@@', -- git added
+  info      = '@@info@@',
+}
+"""
+
+lualine_header = """
+-- Mod rengi: normal altin (masaustu), insert krem, visual deniz yesili,
+-- command celik. b/c bolumleri notr: durum cubugu kod degil, arayuz.
+"""
+
+kitty_header = """
+#  Nazarick: siyah zemin, masaustu altini (#E0B878) chrome ve kodda ayni.
+#  Kod rolleri dusuk doygunlukta, ayrim olculmus.
+#  ANSI durust birakildi: yesil yesil, kirmizi kirmizi. git diff,
+#  pytest, trivy ve semgrep bu ayrima bagli.
+"""
+
+yazi_header = """
+# Ayni palet: nvim/nazarick.lua, terminal/nazarick.conf.
+# Mod rozeti masaustu altini, sekme ve imlec krem; dosya turleri
+# LS_COLORS ile ayni rolleri alir (dizin=ozellik, calistirilabilir=
+# fonksiyon, arsiv=sayi, medya=string, anahtar/sertifika=hata).
+"""
+
+yazi_readme_intro = """
+Signalman ailesinin dorduncu paleti. Mod rozeti masaustu altini (#E0B878),
+kod onizlemesi `tmtheme.xml` ile Neovim ve VSCodium temasiyla ayni renklerde.
+"""
+
+tmtheme_comment = "Signalman ailesi — themes/nazarick-color-theme.json ile ayni kurallardan uretildi"

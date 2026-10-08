@@ -48,6 +48,7 @@ HEX_ROLES = {
     '#DFE6EC': 'type', '#8E9DAA': 'property', '#7E8B92': 'param', '#86898C': 'unknown',
     '#8D998F': 'comment', '#A1A6AB': 'operator', '#757D84': 'punct', '#6F7275': 'linenr',
     '#A89C93': 'regex', '#DCC58C': 'regex_meta', '#F7BD00': 'warn',
+    '#C57AD4': 'violet',   # Guardian'in chrome moru (secim, link, isaret); Signal Violet'te ayni renk oldugu icin fark edilmemisti
     # notr / sicak artiklar (vurgu katmanlari, girinti cizgileri, bosluk isaretleri)
     '#D6DCE1': (0.88, 0.010), '#6C7075': (0.55, 0.012), '#5C6165': (0.49, 0.012),
     '#101418': (0.17, 0.012), '#4E5661': (0.43, 0.014), '#0A0C0D': (0.11, 0.008),

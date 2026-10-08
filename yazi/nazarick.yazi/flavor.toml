@@ -1,0 +1,118 @@
+# Nazarick — Yazi flavor
+#
+# Ayni palet: nvim/nazarick.lua, terminal/nazarick.conf.
+# Mod rozeti masaustu altini, sekme ve imlec krem; dosya turleri
+# LS_COLORS ile ayni rolleri alir (dizin=ozellik, calistirilabilir=
+# fonksiyon, arsiv=sayi, medya=string, anahtar/sertifika=hata).
+
+[mgr]
+cwd              = { fg = "#E0B878", bold = true }
+find_keyword     = { fg = "#EADDBD", bold = true, underline = true }
+find_position    = { fg = "#70A7C2", bg = "reset", bold = true }
+symlink_target   = { fg = "#9CB7B7", italic = true }
+marker_copied    = { fg = "#90BDA4", bg = "#90BDA4" }
+marker_cut       = { fg = "#FF7061", bg = "#FF7061" }
+marker_marked    = { fg = "#E0B878", bg = "#E0B878" }
+marker_selected  = { fg = "#EADDBD", bg = "#EADDBD" }
+count_copied     = { fg = "#000000", bg = "#90BDA4" }
+count_cut        = { fg = "#000000", bg = "#FF7061" }
+count_selected   = { fg = "#000000", bg = "#EADDBD" }
+border_symbol    = "│"
+border_style     = { fg = "#2A2319" }
+
+[indicator]
+parent  = { fg = "#E9E4DC", bg = "#3C2A0E" }
+current = { fg = "#000000", bg = "#E0B878", bold = true }
+preview = { underline = true }
+
+[tabs]
+active   = { fg = "#000000", bg = "#EADDBD", bold = true }
+inactive = { fg = "#877F76", bg = "#080503" }
+
+[mode]
+normal_main = { fg = "#000000", bg = "#E0B878", bold = true }
+normal_alt  = { fg = "#E0B878", bg = "#080503" }
+select_main = { fg = "#000000", bg = "#90BDA4", bold = true }
+select_alt  = { fg = "#90BDA4", bg = "#080503" }
+unset_main  = { fg = "#000000", bg = "#70A7C2", bold = true }
+unset_alt   = { fg = "#70A7C2", bg = "#080503" }
+
+[status]
+perm_type       = { fg = "#9CB7B7" }
+perm_read       = { fg = "#EADDBD" }
+perm_write      = { fg = "#FF7061" }
+perm_exec       = { fg = "#90BDA4" }
+perm_sep        = { fg = "#6E6860" }
+progress_label  = { fg = "#E9E4DC", bold = true }
+progress_normal = { fg = "#E0B878", bg = "#080503" }
+progress_error  = { fg = "#FF7061", bg = "#080503" }
+
+[which]
+mask            = { bg = "#080503" }
+cand            = { fg = "#EADDBD" }
+rest            = { fg = "#877F76" }
+desc            = { fg = "#D0C9C1" }
+separator       = "  "
+separator_style = { fg = "#6E6860" }
+
+[confirm]
+border  = { fg = "#E0B878" }
+title   = { fg = "#E0B878", bold = true }
+body    = { fg = "#D0C9C1" }
+list    = { fg = "#B1A9A2" }
+btn_yes = { fg = "#000000", bg = "#EADDBD", bold = true }
+btn_no  = { fg = "#D0C9C1", bg = "#080503" }
+
+[spot]
+border   = { fg = "#E0B878" }
+title    = { fg = "#E0B878", bold = true }
+tbl_col  = { fg = "#9CB7B7" }
+tbl_cell = { fg = "#D0C9C1" }
+
+[notify]
+title_info  = { fg = "#78A1D5" }
+title_warn  = { fg = "#F28F29" }
+title_error = { fg = "#FF7061" }
+
+[pick]
+border   = { fg = "#E0B878" }
+active   = { fg = "#E0B878", bold = true }
+inactive = { fg = "#D0C9C1" }
+
+[input]
+border   = { fg = "#E0B878" }
+title    = { fg = "#E0B878" }
+value    = { fg = "#E9E4DC" }
+selected = { bg = "#3C2A0E" }
+
+[cmp]
+border   = { fg = "#E0B878" }
+active   = { fg = "#000000", bg = "#E0B878" }
+inactive = { fg = "#D0C9C1" }
+
+[tasks]
+border  = { fg = "#E0B878" }
+title   = { fg = "#E0B878" }
+hovered = { fg = "#EADDBD", underline = true }
+
+[help]
+border  = { fg = "#E0B878" }
+chord   = { fg = "#EADDBD" }
+action  = { fg = "#90BDA4" }
+hovered = { bg = "#3C2A0E", bold = true }
+
+[filetype]
+rules = [
+  { mime = "image/*", fg = "#90BDA4" },
+  { mime = "{audio,video}/*", fg = "#90BDA4" },
+  { mime = "application/{zip,gzip,x-tar,x-bzip*,x-7z-compressed,x-rar,x-xz,zstd}", fg = "#E0A07D" },
+  { url = "*.{pem,key,crt,p12,pfx}", fg = "#FF7061" },
+  { url = "*.{yaml,yml,toml,json,tf,tfvars,hcl,conf,ini,env}", fg = "#E0B878" },
+  { url = "*Dockerfile", fg = "#E0B878" },
+  { url = "*.{log,bak}", fg = "#6E6860" },
+  { url = "*", is = "orphan", fg = "#FF7061" },
+  { url = "*", is = "exec", fg = "#EADDBD" },
+  { url = "*", is = "link", fg = "#E0B878" },
+  { url = "*", fg = "#D0C9C1" },
+  { url = "*/", fg = "#9CB7B7" },
+]
