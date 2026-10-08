@@ -133,3 +133,18 @@ Renkler 3.1.0 ile ayni; tema artik editor disindaki araclara da uzaniyor.
   tonuna alindi.
 - VSCodium/tmTheme: `self` ve dekoratorler Sublime/bat kapsam adlariyla da
   (`variable.language`, `meta.annotation`) gul rengini aliyor.
+
+## 3.2.0 — Signal Violet: duz metin sakinlesti
+
+Gercek ekranda (kitty, Iosevka 12.5) duz metin fazla parlak ve kalin
+okunuyordu. Ekranda en sik gorunen token degisken adlari; Signalman'in
+kurali "en sik token en sakin olan" 3.1'de bozulmustu.
+
+- duz metin #DFDDE4 -> #CBC9D0 (Lc 86.6 -> 74.5, Guardian 74.1 ile ayni
+  seviye). Siyah zeminde parlak metnin yarattigi "kalin" etkisi azaldi.
+- tipler/siniflar/istisnalar #E0DDFB -> #C0D0F9 (mavi-lila). Eskisi duz
+  metinle neredeyse ayni beyazdi; artik `ValueError` gibi isimler ayri.
+- ana kod tokenlari arasinda en dusuk ayrim 8.8 -> 9.8
+- mor, sari, yesil, mercan, gul ve diger roller degismedi.
+- kitty color7/color15, kabuk prompt'u, lualine, Yazi ve bat ayni
+  degerlerden yeniden uretildi.

@@ -6,7 +6,7 @@
 local c = {
   bg      = '#000000',
   panel   = '#060509',
-  fg      = '#DFDDE4',
+  fg      = '#CBC9D0',
   muted   = '#817E88',
   dim     = '#6A676F',
   accent  = '#C57AD4',

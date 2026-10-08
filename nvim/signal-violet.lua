@@ -7,7 +7,8 @@
 -- pytest, trivy ve semgrep bu ayrima bagli.
 --
 -- Olcumler (CIEDE2000 ayrim, APCA Lc kontrast, siyah zemin):
---   ana kod tokenlari arasinda en dusuk ayrim   Guardian 3.5 -> 8.8
+--   ana kod tokenlari arasinda en dusuk ayrim   Guardian 3.5 -> 9.8
+--   duz metin kontrasti                          Lc 74.5 (Guardian 74.1)
 --   yapisal tonlar (yorum/noktalama/cozulmemis) Guardian 4.3 -> 7.1
 --   uyari vs fonksiyon                           dE 20.4
 --   yorum kontrasti                              Lc 47 (Guardian ile ayni)
@@ -33,15 +34,15 @@ local c = {
   bg_sel    = '#2F1E3A', -- secim: koyu mor, chrome ailesinden
   border    = '#201E25',
 
-  fg        = '#DFDDE4', -- duz metin: mora calan kemik beyazi
-  fg_bright = '#EFEDF3',
+  fg        = '#CBC9D0', -- duz metin: mora calan kemik beyazi, Guardian parlakliginda (en sik token en sakin olan)
+  fg_bright = '#E5E3E9',
 
   -- kod ekseni: masaustunun iki rengi + kendi tonunda her rol
   keyword   = '#C57AD4', -- def, if, return, import — waybar moru
   func      = '#F5C842', -- fonksiyonlar — waybar sarisi
   string    = '#87E496', -- fosfor yesili
   number    = '#F7A284', -- sayilar, sabitler — mercan
-  type      = '#E0DDFB', -- tipler, siniflar — lilaya calan buz beyazi
+  type      = '#C0D0F9', -- tipler, siniflar, istisnalar — mavi-lila (duz metinden ayri)
   builtin   = '#EB9DBB', -- self, True/None, dekorator — gul
   param     = '#B6B4D0', -- parametreler (italik)
   property  = '#8CBBBE', -- ozellikler, nesne anahtarlari
@@ -434,7 +435,7 @@ function M.load()
   vim.g.terminal_color_4  = '#78A1D5'
   vim.g.terminal_color_5  = '#CF8FDD'
   vim.g.terminal_color_6  = '#70BCC5'
-  vim.g.terminal_color_7  = '#DFDDE4'
+  vim.g.terminal_color_7  = '#CBC9D0'
   vim.g.terminal_color_8  = '#86898C'
   vim.g.terminal_color_9  = '#F6A397'
   vim.g.terminal_color_10 = '#6BD47F'
@@ -442,7 +443,7 @@ function M.load()
   vim.g.terminal_color_12 = '#99B7DC'
   vim.g.terminal_color_13 = '#DBB0E5'
   vim.g.terminal_color_14 = '#85D2DB'
-  vim.g.terminal_color_15 = '#EFEDF3'
+  vim.g.terminal_color_15 = '#E5E3E9'
 end
 
 -- :SignalVioletCheck — token gruplarinin cozulmus renklerini ve siyah zemine gore

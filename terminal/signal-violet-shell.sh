@@ -20,9 +20,9 @@ __sv_gold='197;122;212'  # #C57AD4  keyword
 __sv_gold_pale='245;200;66'  # #F5C842  function
 __sv_gold_mid='135;228;150'  # #87E496  string
 __sv_cream='247;162;132'  # #F7A284  number
-__sv_steel='224;221;251'  # #E0DDFB  type
+__sv_steel='192;208;249'  # #C0D0F9  type
 __sv_steel_dim='140;187;190'  # #8CBBBE  property
-__sv_fg='223;221;228'  # #DFDDE4  text
+__sv_fg='203;201;208'  # #CBC9D0  text
 __sv_punct='129;126;136'  # #817E88  punctuation
 __sv_dim='106;103;111'  # #6A676F  gutter
 __sv_clay='255;112;97'  # #FF7061  error
@@ -213,7 +213,7 @@ fi
 # Kabuk dosyasi tekrar source edilirse ayni renk iki kez eklenmesin.
 case "${FZF_DEFAULT_OPTS:-}" in
   *"hl:#C57AD4"*) ;;
-  *) export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:-} --color=fg:#DFDDE4,bg:-1,hl:#C57AD4,fg+:#EFEDF3,bg+:#2F1E3A,hl+:#F5C842,info:#817E88,prompt:#C57AD4,pointer:#F5C842,marker:#87E496,spinner:#C57AD4,header:#9C96AA,border:#201E25,gutter:-1" ;;
+  *) export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:-} --color=fg:#CBC9D0,bg:-1,hl:#C57AD4,fg+:#E5E3E9,bg+:#2F1E3A,hl+:#F5C842,info:#817E88,prompt:#C57AD4,pointer:#F5C842,marker:#87E496,spinner:#C57AD4,header:#9C96AA,border:#201E25,gutter:-1" ;;
 esac
 
 # ── jq ─────────────────────────────────────────────────────────────

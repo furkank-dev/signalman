@@ -21,7 +21,7 @@ border_symbol    = "│"
 border_style     = { fg = "#201E25" }
 
 [indicator]
-parent  = { fg = "#EFEDF3", bg = "#2F1E3A" }
+parent  = { fg = "#E5E3E9", bg = "#2F1E3A" }
 current = { fg = "#000000", bg = "#C57AD4", bold = true }
 preview = { underline = true }
 
@@ -43,7 +43,7 @@ perm_read       = { fg = "#F5C842" }
 perm_write      = { fg = "#FF7061" }
 perm_exec       = { fg = "#87E496" }
 perm_sep        = { fg = "#6A676F" }
-progress_label  = { fg = "#EFEDF3", bold = true }
+progress_label  = { fg = "#E5E3E9", bold = true }
 progress_normal = { fg = "#C57AD4", bg = "#060509" }
 progress_error  = { fg = "#FF7061", bg = "#060509" }
 
@@ -51,23 +51,23 @@ progress_error  = { fg = "#FF7061", bg = "#060509" }
 mask            = { bg = "#060509" }
 cand            = { fg = "#F5C842" }
 rest            = { fg = "#817E88" }
-desc            = { fg = "#DFDDE4" }
+desc            = { fg = "#CBC9D0" }
 separator       = "  "
 separator_style = { fg = "#6A676F" }
 
 [confirm]
 border  = { fg = "#C57AD4" }
 title   = { fg = "#C57AD4", bold = true }
-body    = { fg = "#DFDDE4" }
+body    = { fg = "#CBC9D0" }
 list    = { fg = "#ACA9B1" }
 btn_yes = { fg = "#000000", bg = "#F5C842", bold = true }
-btn_no  = { fg = "#DFDDE4", bg = "#060509" }
+btn_no  = { fg = "#CBC9D0", bg = "#060509" }
 
 [spot]
 border   = { fg = "#C57AD4" }
 title    = { fg = "#C57AD4", bold = true }
 tbl_col  = { fg = "#8CBBBE" }
-tbl_cell = { fg = "#DFDDE4" }
+tbl_cell = { fg = "#CBC9D0" }
 
 [notify]
 title_info  = { fg = "#78A1D5" }
@@ -77,18 +77,18 @@ title_error = { fg = "#FF7061" }
 [pick]
 border   = { fg = "#C57AD4" }
 active   = { fg = "#C57AD4", bold = true }
-inactive = { fg = "#DFDDE4" }
+inactive = { fg = "#CBC9D0" }
 
 [input]
 border   = { fg = "#C57AD4" }
 title    = { fg = "#C57AD4" }
-value    = { fg = "#EFEDF3" }
+value    = { fg = "#E5E3E9" }
 selected = { bg = "#2F1E3A" }
 
 [cmp]
 border   = { fg = "#C57AD4" }
 active   = { fg = "#000000", bg = "#C57AD4" }
-inactive = { fg = "#DFDDE4" }
+inactive = { fg = "#CBC9D0" }
 
 [tasks]
 border  = { fg = "#C57AD4" }
@@ -113,6 +113,6 @@ rules = [
   { url = "*", is = "orphan", fg = "#FF7061" },
   { url = "*", is = "exec", fg = "#F5C842" },
   { url = "*", is = "link", fg = "#C57AD4" },
-  { url = "*", fg = "#DFDDE4" },
+  { url = "*", fg = "#CBC9D0" },
   { url = "*/", fg = "#8CBBBE" },
 ]
