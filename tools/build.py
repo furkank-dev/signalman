@@ -35,7 +35,7 @@ import sys
 import tomllib
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from colorlib import oklch_to_hex, resolve, rgb_triplet  # noqa: E402
+from colorlib import hex_to_oklch, oklch_to_hex, resolve, rgb_triplet  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/'
 
@@ -56,6 +56,12 @@ HEX_ROLES = {
     '#332C22': (0.29, 0.012), '#1A1712': (0.19, 0.010), '#9F9A8F': (0.70, 0.012),
     '#5A554C': (0.46, 0.012), '#3A342A': (0.32, 0.012), '#6A6052': (0.50, 0.014),
 }
+
+# Mor chrome'un acik tonlari (VSCodium: buton hover, aktif link). Paletin
+# `violet` renginin ustune ayni OKLCh farkiyla kurulur: (L farki, C orani).
+# Kalip moruyla ayni moru kullanan palette kalip rengi aynen kalir.
+VIOLET_TINTS = {'#D094DD': (0.0583, 0.8046), '#D8A4E4': (0.0967, 0.6984)}
+TEMPLATE_VIOLET = '#C57AD4'
 
 ROLES = ['bg', 'bg_elev', 'bg_line', 'bg_sel', 'border', 'fg', 'fg_bright', 'keyword', 'function',
          'string', 'number', 'type', 'builtin', 'param', 'property', 'unknown', 'comment', 'operator',
@@ -92,6 +98,9 @@ def build(cfg, P):
     fn = slug.replace('-', '_')
 
     HEX = {g: (P[r] if isinstance(r, str) else oklch_to_hex(r[0], r[1], hue)) for g, r in HEX_ROLES.items()}
+    vL, vC, vH = hex_to_oklch(P['violet'])
+    for g, (dL, kC) in VIOLET_TINTS.items():
+        HEX[g] = g if P['violet'].upper() == TEMPLATE_VIOLET else oklch_to_hex(min(vL + dL, 0.97), vC * kC, vH)
 
     def maphex(s, skip=lambda line: False):
         out = []

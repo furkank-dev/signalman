@@ -202,3 +202,14 @@ bagli oldugunu gosteriyor:
 - Hicbiri yoksa prompt eskisi gibi. kubectl/docker calistirilmaz, ayar
   dosyalari okunur: satir basina ~4 ms.
 - Amac: yanlis cluster'a / hesaba komut atmamak.
+
+## 3.3.2 — Nazarick: son mor izler
+
+- VSCodium'da buton ustune gelince ve aktif linkte hala mor vardi
+  (#D094DD, #D8A4E4). Guardian kalibindaki morun acik tonlariydi; build.py
+  bunlari tanimiyordu. Artik paletin chrome renginden ayni OKLCh farkiyla
+  uretiliyor: Nazarick'te acik altin (#EDCC9A, #F6DAAE). Signal Violet
+  dosyalari degismedi.
+- package.json: depo ve hata linkleri olmayan bir adrese gidiyordu
+  (psik0t/bastion-black); artik furkank-dev/signalman. Aciklama dort paleti
+  sayiyor.
